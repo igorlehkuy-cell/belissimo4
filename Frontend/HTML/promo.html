@@ -1,10 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Промокоди – Bellissimo</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-$END$
+<body class="promo-page">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-logo">Bellissimo</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>Home</span>
+            </a>
+            <a href="menu.html" class="nav-item">
+                <span class="nav-icon">🍴</span>
+                <span>Menu</span>
+            </a>
+            <a href="news.html" class="nav-item">
+                <span class="nav-icon">📰</span>
+                <span>C</span>
+            </a>
+            <a href="dominos.html" class="nav-item">
+                <span class="nav-icon">🍕</span>
+                <span>Pizza</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+            <a href="promo.html" class="nav-item promo-code active">
+                <span>PROMO CODE</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>About us</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content promo-content">
+        <header class="page-header">
+            <a href="index.html" class="back-button">←</a>
+            <h1>Promocods</h1>
+        </header>
+
+        <div class="promo-container">
+            <div class="promo-header">
+                <h1 class="bellissimo-logo">bellissimo</h1>
+                <h2 class="promo-title">Promocods</h2>
+            </div>
+            
+            <div class="promo-input-card">
+                <input type="text" id="promoInput" class="promo-input" placeholder="Write...">
+                <button id="applyPromo" class="promo-button">Застосувати</button>
+            </div>
+            
+            <div class="made-in-italia">
+                <span>made in Italia</span>
+                <span class="italian-flag">🇮🇹</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const promoBtn = document.getElementById('applyPromo');
+        const promoInput = document.getElementById('promoInput');
+
+        promoBtn.onclick = () => {
+            const promoCode = promoInput.value.trim();
+            if (promoCode === 'COCA-COLA' || promoCode === 'COCAZERO' || promoCode === 'COCA') {
+                window.location.href = 'promo-success.html';
+            } else if (promoCode) {
+                alert('Невірний промокод. Спробуйте зе раз');
+            }
+        }
+    </script>
 </body>
 </html>
