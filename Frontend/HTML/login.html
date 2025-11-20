@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellissimo – Вхід</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
 </head>
-<body>
-$END$
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="bellissimo-logo">
+                <span class="logo-dot blue-dot">•</span>bellissi<span class="logo-dot red-dot">•</span>mo
+            </h1>
+        </div>
+        
+        <div class="login-card">
+            <h2 class="welcome-text">Welcome!</h2>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <a href="#" class="forgot-password">Forgot the password?</a>
+                
+                <button type="submit" class="login-btn">log in</button>
+            </form>
+            <p style="text-align:center;margin-top:20px;">
+                Немає акаунта? <a href="register.html" style="color: #0000FF; text-decoration: underline;">Зареєструватися</a>
+            </p>
+            <div id="loginMessage" style="text-align: center; margin-top: 15px; color: var(--red); display: none;"></div>
+        </div>
+        
+        <div class="made-in-italia">
+            <span>made in Italia</span>
+            <span class="italian-flag">🇮🇹</span>
+        </div>
+    </div>
+
+    <script>
+        // Перевірка, чи користувач вже зареєстрований
+        window.addEventListener('DOMContentLoaded', function() {
+            const registered = localStorage.getItem('bellissimo-registered');
+            if (!registered) {
+                // Якщо не зареєстрований, перенаправляємо на реєстрацію
+                setTimeout(function() {
+                    window.location.href = 'register.html';
+                }, 100);
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('loginMessage');
+            
+            // Отримуємо дані реєстрації
+            const userData = localStorage.getItem('bellissimo-user');
+            
+            if (!userData) {
+                messageDiv.textContent = 'Спочатку потрібно зареєструватися!';
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = 'var(--red)';
+                setTimeout(function() {
+                    window.location.href = 'register.html';
+                }, 2000);
+                return;
+            }
+            
+            const user = JSON.parse(userData);
+            
+            // Перевірка email та password
+            if (user.email === email && user.password === password) {
+                // Зберігаємо інформацію про вхід
+                localStorage.setItem('bellissimo-logged-in', 'true');
+                localStorage.setItem('bellissimo-current-user', JSON.stringify(user));
+                
+                // Показуємо повідомлення про успіх
+                messageDiv.textContent = 'Вхід успішний! Переходимо...';
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = 'var(--green)';
+                
+                // Перенаправляємо на головну сторінку
+                setTimeout(function() {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } else {
+                messageDiv.textContent = 'Невірний email або пароль!';
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = 'var(--red)';
+            }
+        });
+    </script>
 </body>
 </html>
