@@ -1,10 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Меню – Bellissimo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.auth && !window.auth.isLoggedIn()) {
+                window.auth.requireAuth();
+            }
+        });
+    </script>
 </head>
-<body>
-$END$
+<body class="menu-page">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-logo">Bellissimo</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>Home</span>
+            </a>
+            <div class="nav-item-dropdown active">
+                <a href="menu.html" class="nav-item nav-item-parent active">
+                    <span class="nav-icon">🍴</span>
+                    <span>Menu</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="menu.html" class="nav-dropdown-item">Всі страви</a>
+                    <a href="Mcdonalds.html" class="nav-dropdown-item">McDonald's</a>
+                    <a href="kfc.html" class="nav-dropdown-item">KFC</a>
+                    <a href="sushi.html" class="nav-dropdown-item">Sushi</a>
+                    <a href="dominos.html" class="nav-dropdown-item">Pizza</a>
+                    <a href="coffee.html" class="nav-dropdown-item">Coffee</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="news.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">📰</span>
+                    <span>Новини</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="news.html" class="nav-dropdown-item">Всі новини</a>
+                    <a href="news.html#trends" class="nav-dropdown-item">Тренди</a>
+                    <a href="news.html#seasonal" class="nav-dropdown-item">Сезонні новинки</a>
+                    <a href="news.html#vegan" class="nav-dropdown-item">Веганська кухня</a>
+                </div>
+            </div>
+            <a href="dominos.html" class="nav-item">
+                <span class="nav-icon">🍕</span>
+                <span>Pizza</span>
+            </a>
+            <div class="nav-item-dropdown">
+                <a href="settings.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="settings.html" class="nav-dropdown-item">Налаштування</a>
+                    <a href="profile.html" class="nav-dropdown-item">Профіль</a>
+                    <a href="orders.html" class="nav-dropdown-item">Мої замовлення</a>
+                    <a href="orders.html#history" class="nav-dropdown-item">Історія замовлень</a>
+                </div>
+            </div>
+            <a href="promo.html" class="nav-item promo-code">
+                <span>PROMO CODE</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>About us</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <a href="index.html" class="back-button">←</a>
+            <h1>Меню</h1>
+        </header>
+
+        <div class="menu-list">
+            <div class="item"><span>🍕 Піца Маргарита</span><span>150₴</span></div>
+            <div class="item"><span>🍔 Біг Мак</span><span>120₴</span></div>
+            <div class="item"><span>🍟 Картопля Фрі</span><span>65₴</span></div>
+            <div class="item"><span>🥤 Кола</span><span>40₴</span></div>
+            <div class="item"><span>🍣 Сет Суші</span><span>250₴</span></div>
+            <div class="item"><span>🍰 Десерт</span><span>90₴</span></div>
+            <div class="item"><span>🍗 Курячі нагетси</span><span>95₴</span></div>
+            <div class="item"><span>🌮 Такос</span><span>110₴</span></div>
+            <div class="item"><span>☕ Кава лате</span><span>55₴</span></div>
+            <div class="item"><span>🥗 Салат Цезар</span><span>85₴</span></div>
+        </div>
+    </main>
+    <script src="../js/dropdown.js"></script>
 </body>
 </html>
