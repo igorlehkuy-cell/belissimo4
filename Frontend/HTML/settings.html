@@ -1,10 +1,161 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Налаштування – Bellissimo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
 </head>
-<body>
-$END$
+<body class="settings-page">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-logo">Bellissimo</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>Home</span>
+            </a>
+            <div class="nav-item-dropdown">
+                <a href="menu.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">🍴</span>
+                    <span>Menu</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="menu.html" class="nav-dropdown-item">Всі страви</a>
+                    <a href="Mcdonalds.html" class="nav-dropdown-item">McDonald's</a>
+                    <a href="kfc.html" class="nav-dropdown-item">KFC</a>
+                    <a href="sushi.html" class="nav-dropdown-item">Sushi</a>
+                    <a href="dominos.html" class="nav-dropdown-item">Pizza</a>
+                    <a href="coffee.html" class="nav-dropdown-item">Coffee</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="news.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">📰</span>
+                    <span>Новини</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="news.html" class="nav-dropdown-item">Всі новини</a>
+                    <a href="news.html#trends" class="nav-dropdown-item">Тренди</a>
+                    <a href="news.html#seasonal" class="nav-dropdown-item">Сезонні новинки</a>
+                    <a href="news.html#vegan" class="nav-dropdown-item">Веганська кухня</a>
+                </div>
+            </div>
+            <a href="dominos.html" class="nav-item">
+                <span class="nav-icon">🍕</span>
+                <span>Pizza</span>
+            </a>
+            <div class="nav-item-dropdown active">
+                <a href="settings.html" class="nav-item nav-item-parent active">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="settings.html" class="nav-dropdown-item">Налаштування</a>
+                    <a href="profile.html" class="nav-dropdown-item">Профіль</a>
+                    <a href="orders.html" class="nav-dropdown-item">Мої замовлення</a>
+                    <a href="orders.html#history" class="nav-dropdown-item">Історія замовлень</a>
+                </div>
+            </div>
+            <a href="promo.html" class="nav-item promo-code">
+                <span>PROMO CODE</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>About us</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <a href="index.html" class="back-button">←</a>
+            <h1>Налаштування</h1>
+        </header>
+
+        <form class="settings-form" id="settingsForm">
+            <label for="name">Ім'я</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="language">Мова</label>
+            <select id="language">
+                <option selected>Українська</option>
+                <option>English</option>
+                <option>Italiano</option>
+            </select>
+
+            <label for="theme">Тема</label>
+            <select id="theme">
+                <option value="light">Світла</option>
+                <option value="dark">Темна</option>
+            </select>
+
+            <label for="notifications">Сповіщення</label>
+            <select id="notifications">
+                <option selected>Увімкнено</option>
+                <option>Вимкнено</option>
+            </select>
+
+            <button type="submit">Зберегти</button>
+        </form>
+        
+        <div style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; gap: 15px;">
+            <a href="profile.html" style="display: inline-block; padding: 15px 30px; background: #32B432; color: white; text-decoration: none; border-radius: 10px; font-weight: bold;">Переглянути профіль</a>
+            <button id="logoutBtn" style="padding: 15px 30px; background: #dc3545; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem;">Вийти з акаунта</button>
+        </div>
+    </main>
+
+    <script src="../js/auth.js"></script>
+    <script>
+  
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.auth && !window.auth.isLoggedIn()) {
+                window.location.href = 'register.html';
+                return;
+            }
+            
+
+            const user = window.auth && window.auth.getCurrentUser();
+            if (user) {
+                document.getElementById('name').value = user.fullname || '';
+                document.getElementById('email').value = user.email || '';
+            }
+            
+
+            document.getElementById('settingsForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                
+
+                if (user) {
+                    user.fullname = name;
+                    user.email = email;
+                    localStorage.setItem('bellissimo-user', JSON.stringify(user));
+                    localStorage.setItem('bellissimo-current-user', JSON.stringify(user));
+                    alert('Налаштування збережено!');
+                }
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', function() {
+                if (confirm('Ви впевнені, що хочете вийти?')) {
+                    localStorage.removeItem('bellissimo-logged-in');
+                    localStorage.removeItem('bellissimo-current-user');
+                    window.location.href = 'login.html';
+                }
+            });
+        });
+    </script>
+    <script src="../js/dropdown.js"></script>
 </body>
 </html>
