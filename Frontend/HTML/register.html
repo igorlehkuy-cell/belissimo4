@@ -1,10 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellissimo – Реєстрація</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
 </head>
-<body>
-$END$
+<body class="register-page">
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="bellissimo-logo">
+                <span class="logo-dot blue-dot">•</span>bellissi<span class="logo-dot red-dot">•</span>mo
+            </h1>
+        </div>
+        
+        <div class="login-card">
+            <h2 class="welcome-text">Реєстрація</h2>
+            <form id="registerForm" class="login-form">
+                <div class="form-group">
+                    <label for="fullname">Full name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                </div>
+                
+                <button type="submit" class="login-btn">Зареєструватися</button>
+            </form>
+            <p style="text-align:center;margin-top:20px;">
+                Вже маєш акаунт? <a href="login.html" style="color: #0000FF; text-decoration: underline;">Увійти</a>
+            </p>
+            <div id="registerMessage" style="text-align: center; margin-top: 15px; color: var(--red); display: none;"></div>
+        </div>
+        
+        <div class="made-in-italia">
+            <span>made in Italia</span>
+            <span class="italian-flag">🇮🇹</span>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const messageDiv = document.getElementById('registerMessage');
+            
+
+            if (password !== confirmPassword) {
+                messageDiv.textContent = 'Паролі не співпадають!';
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = 'var(--red)';
+                return;
+            }
+            
+            if (password.length < 6) {
+                messageDiv.textContent = 'Пароль повинен містити мінімум 6 символів!';
+                messageDiv.style.display = 'block';
+                messageDiv.style.color = 'var(--red)';
+                return;
+            }
+            
+
+            const userData = {
+                fullname: fullname,
+                email: email,
+                password: password,
+                registered: true
+            };
+            
+            localStorage.setItem('bellissimo-user', JSON.stringify(userData));
+            localStorage.setItem('bellissimo-registered', 'true');
+
+            messageDiv.textContent = 'Реєстрація успішна! Переходимо до входу...';
+            messageDiv.style.display = 'block';
+            messageDiv.style.color = 'var(--green)';
+            
+
+            setTimeout(function() {
+                window.location.href = 'login.html';
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
