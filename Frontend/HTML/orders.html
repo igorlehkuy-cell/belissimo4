@@ -1,10 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Замовлення – Bellissimo</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/theme.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.auth && !window.auth.isLoggedIn()) {
+                window.auth.requireAuth();
+            }
+            loadOrders();
+        });
+    </script>
 </head>
-<body>
-$END$
+<body class="orders-page">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-logo">Bellissimo</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>Home</span>
+            </a>
+            <div class="nav-item-dropdown">
+                <a href="menu.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">🍴</span>
+                    <span>Menu</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="menu.html" class="nav-dropdown-item">Всі страви</a>
+                    <a href="Mcdonalds.html" class="nav-dropdown-item">McDonald's</a>
+                    <a href="kfc.html" class="nav-dropdown-item">KFC</a>
+                    <a href="sushi.html" class="nav-dropdown-item">Sushi</a>
+                    <a href="dominos.html" class="nav-dropdown-item">Pizza</a>
+                    <a href="coffee.html" class="nav-dropdown-item">Coffee</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="news.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">📰</span>
+                    <span>Новини</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="news.html" class="nav-dropdown-item">Всі новини</a>
+                    <a href="news.html#trends" class="nav-dropdown-item">Тренди</a>
+                    <a href="news.html#seasonal" class="nav-dropdown-item">Сезонні новинки</a>
+                    <a href="news.html#vegan" class="nav-dropdown-item">Веганська кухня</a>
+                </div>
+            </div>
+            <a href="dominos.html" class="nav-item">
+                <span class="nav-icon">🍕</span>
+                <span>Pizza</span>
+            </a>
+            <div class="nav-item-dropdown">
+                <a href="settings.html" class="nav-item nav-item-parent active">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="settings.html" class="nav-dropdown-item">Налаштування</a>
+                    <a href="profile.html" class="nav-dropdown-item">Профіль</a>
+                    <a href="orders.html" class="nav-dropdown-item">Мої замовлення</a>
+                    <a href="orders.html#history" class="nav-dropdown-item">Історія замовлень</a>
+                </div>
+            </div>
+            <a href="promo.html" class="nav-item promo-code">
+                <span>PROMO CODE</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>About us</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content orders-content">
+        <header class="page-header">
+            <a href="index.html" class="back-button">←</a>
+            <h1>Мої замовлення</h1>
+        </header>
+
+        <div class="orders-tabs">
+            <button class="order-tab active" data-tab="recent">Останні замовлення</button>
+            <button class="order-tab" data-tab="history">Історія замовлень</button>
+        </div>
+
+        <!-- Recent Orders -->
+        <div id="recentOrders" class="orders-tab-content active">
+            <h2 class="section-title">Останні замовлення</h2>
+            <div class="orders-list" id="recentOrdersList">
+                <!-- Orders will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Order History -->
+        <div id="historyOrders" class="orders-tab-content">
+            <h2 class="section-title">Історія замовлень</h2>
+            <div class="orders-list" id="historyOrdersList">
+                <!-- History will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <div class="empty-icon">📦</div>
+            <h3>Немає замовлень</h3>
+            <p>Ви ще не зробили жодного замовлення</p>
+            <a href="index.html" class="btn">Перейти до замовлення</a>
+        </div>
+    </main>
+
+    <script src="../js/orders.js"></script>
+    <script src="../js/dropdown.js"></script>
 </body>
 </html>
