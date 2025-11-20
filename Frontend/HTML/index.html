@@ -1,10 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bellissimo – Головна</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="../js/theme.js"></script>
+    <script defer src="../js/script.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+
+        window.addEventListener('DOMContentLoaded', function() {
+            if (window.auth && !window.auth.isLoggedIn()) {
+                const isRegistered = window.auth.isRegistered();
+                if (!isRegistered) {
+                    window.location.href = 'register.html';
+                } else {
+                    window.location.href = 'login.html';
+                }
+            }
+            
+
+            const user = window.auth && window.auth.getCurrentUser();
+            if (user && user.fullname) {
+                const avatar = document.querySelector('.avatar');
+                const userName = document.querySelector('.user-profile span');
+                if (avatar) avatar.textContent = user.fullname.charAt(0).toUpperCase();
+                if (userName) userName.textContent = user.fullname;
+            }
+        });
+    </script>
 </head>
-<body>
-$END$
+<body class="main-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-logo">Bellissimo</h2>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item active">
+                <span class="nav-dot">•</span>
+                <span>Home</span>
+            </a>
+            <div class="nav-item-dropdown">
+                <a href="menu.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">🍴</span>
+                    <span>Menu</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="menu.html" class="nav-dropdown-item">Всі страви</a>
+                    <a href="Mcdonalds.html" class="nav-dropdown-item">McDonald's</a>
+                    <a href="kfc.html" class="nav-dropdown-item">KFC</a>
+                    <a href="sushi.html" class="nav-dropdown-item">Sushi</a>
+                    <a href="dominos.html" class="nav-dropdown-item">Pizza</a>
+                    <a href="coffee.html" class="nav-dropdown-item">Coffee</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="news.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">📰</span>
+                    <span>Новини</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="news.html" class="nav-dropdown-item">Всі новини</a>
+                    <a href="news.html#trends" class="nav-dropdown-item">Тренди</a>
+                    <a href="news.html#seasonal" class="nav-dropdown-item">Сезонні новинки</a>
+                    <a href="news.html#vegan" class="nav-dropdown-item">Веганська кухня</a>
+                </div>
+            </div>
+            <a href="dominos.html" class="nav-item">
+                <span class="nav-icon">🍕</span>
+                <span>Pizza</span>
+            </a>
+            <div class="nav-item-dropdown">
+                <a href="settings.html" class="nav-item nav-item-parent">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                    <span class="dropdown-arrow">▼</span>
+                </a>
+                <div class="nav-dropdown-menu">
+                    <a href="settings.html" class="nav-dropdown-item">Налаштування</a>
+                    <a href="profile.html" class="nav-dropdown-item">Профіль</a>
+                    <a href="orders.html" class="nav-dropdown-item">Мої замовлення</a>
+                    <a href="orders.html#history" class="nav-dropdown-item">Історія замовлень</a>
+                </div>
+            </div>
+            <a href="promo.html" class="nav-item promo-code">
+                <span>PROMO CODE</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <span class="nav-dot">•</span>
+                <span>About us</span>
+            </a>
+        </nav>
+        
+        <div class="sidebar-brands">
+            <a href="Mcdonalds.html" class="brand-logo mcdonalds">M</a>
+            <a href="sushi.html" class="brand-logo sushi-logo">🍣</a>
+            <a href="#" class="brand-logo celentano">CELENTANO</a>
+        </div>
+        
+        <button class="sidebar-button" id="sidebarLocationBtn">Вказати заклад</button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="top-header">
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+            </div>
+            <a href="profile.html" class="user-profile" style="text-decoration: none; color: inherit;">
+                <div class="avatar">I</div>
+                <span>Ihor</span>
+            </a>
+        </header>
+
+        <div class="restaurants-grid">
+            <a href="Mcdonalds.html" class="restaurant-card">
+                <div class="restaurant-logo mcdonalds">M</div>
+            </a>
+            <a href="kfc.html" class="restaurant-card">
+                <div class="restaurant-logo kfc">KFC</div>
+            </a>
+            <a href="sushi.html" class="restaurant-card">
+                <div class="restaurant-logo sushi">🍣</div>
+            </a>
+            <a href="dominos.html" class="restaurant-card">
+                <div class="restaurant-logo img/dominos.png">🍕</div>
+            </a>
+            <a href="coffee.html" class="restaurant-card">
+                <div class="restaurant-logo coffee">☕</div>
+            </a>
+            <a href="#" class="restaurant-card">
+                <div class="restaurant-logo more">••</div>
+            </a>
+        </div>
+
+        <div class="hero-section">
+            <div class="burger-image">
+                <img src="IMG/mcdonalds.png" alt="Burger">
+                <div class="carousel-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <button class="hero-button" id="heroLocationBtn">Вказати заклад</button>
+        </div>
+
+        <div class="news-section">
+            <div class="news-card">
+                <h3 class="news-title">For you</h3>
+                <div class="news-image">
+                    <img src="https://via.placeholder.com/200x200?text=Vegetables" alt="Vegetables">
+                </div>
+                <p class="news-text">Новий тренд у веганській кухні</p>
+                <a href="news.html" class="detail-link">detail...</a>
+            </div>
+            
+            <div class="news-card">
+                <h3 class="news-title">trends</h3>
+                <div class="news-image">
+                    <img src="https://via.placeholder.com/200x200?text=Fruits" alt="Fruits">
+                </div>
+                <p class="news-text">Технології на кухні</p>
+                <a href="news.html" class="detail-link">detail...</a>
+            </div>
+            
+            <div class="news-card">
+                <h3 class="news-title">Сезонні новинки</h3>
+                <div class="news-image">
+                    <img src="https://via.placeholder.com/200x200?text=Seasonal" alt="Seasonal">
+                </div>
+                <p class="news-text">Сезонні новинки</p>
+                <a href="news.html" class="detail-link">detail...</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Background decoration -->
+    <div class="bg-decoration">
+        <div class="italia-text">
+            <span class="mo-text">mo</span>
+            <span class="made-text">made in Italia 🇮🇹</span>
+        </div>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="map-modal">
+        <div class="map-modal-content">
+            <div class="map-modal-header">
+                <h2>Вказати заклад на карті</h2>
+                <button class="map-modal-close" id="closeMapModal">&times;</button>
+            </div>
+            <div class="map-container">
+                <div id="map" style="width: 100%; height: 500px;"></div>
+            </div>
+            <div class="map-modal-footer">
+                <div class="location-info">
+                    <p><strong>Адреса:</strong> <span id="selectedAddress">Оберіть локацію на карті</span></p>
+                    <p><strong>Координати:</strong> <span id="selectedCoords">-</span></p>
+                </div>
+                <div class="map-modal-buttons">
+                    <button class="btn-map-cancel" id="cancelLocationBtn">Скасувати</button>
+                    <button class="btn-map-save" id="saveLocationBtn">Зберегти локацію</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Map Script -->
+    <script src="../js/map.js"></script>
+    <!-- Dropdown Script -->
+    <script src="../js/dropdown.js"></script>
 </body>
 </html>
