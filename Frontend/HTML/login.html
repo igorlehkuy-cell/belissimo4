@@ -45,7 +45,7 @@
     </div>
 
     <script>
-        // Перевірка, чи користувач вже зареєстрований
+
         window.addEventListener('DOMContentLoaded', function() {
             const registered = localStorage.getItem('bellissimo-registered');
             if (!registered) {
@@ -78,18 +78,17 @@
             
             const user = JSON.parse(userData);
             
-            // Перевірка email та password
+
             if (user.email === email && user.password === password) {
                 // Зберігаємо інформацію про вхід
                 localStorage.setItem('bellissimo-logged-in', 'true');
                 localStorage.setItem('bellissimo-current-user', JSON.stringify(user));
                 
-                // Показуємо повідомлення про успіх
+
                 messageDiv.textContent = 'Вхід успішний! Переходимо...';
                 messageDiv.style.display = 'block';
                 messageDiv.style.color = 'var(--green)';
-                
-                // Перенаправляємо на головну сторінку
+
                 setTimeout(function() {
                     window.location.href = 'index.html';
                 }, 1000);
