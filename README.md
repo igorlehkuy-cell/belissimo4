@@ -67,4 +67,76 @@ o	const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Вставте сюди ID гру�
 Авторські права
 
 © Belissimo, всі права захищені.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Belissimo - simple, fast.
+
+Project: Belissimo - website and backend for food delivery and production management (kitchen + logistics).
+
+Language: Ukrainian
+Goal: fast and convenient ordering of dishes, integrated kitchen management (recipes, cooking queue, ingredients) and delivery logistics (couriers, tracking, ETA).
+
+Features:
+
+1. Modern design
+
+2. Food order form with sending data to Telegram
+
+3. Order history
+
+4.
+5. Filtering services by category
+6.
+7. Modal windows for forms
+8.
+9. Cross-browser compatibility
+
+Key features:
+
+• User interface: list of dishes, filters, custom options, order placement.
+
+• Personal account: order history, repeat orders, saved addresses,
+user level system (the higher the level, the bigger the discounts)
+
+• Payments: integration with payment gateways (e.g. LiqPay/Stripe/Portmone)
+
+• Notifications: SMS/Push/Email order status
+
+• Analytics: orders for the period, most popular dishes.
+
+Architecture
+
+• Frontend:
+
+/html
+
+/js
+
+/css
+
+• Backend
+
+• Integrations: maps (Google Maps / OpenStreetMap)
+
+Setting up sending requests via Telegram
+
+• Create a bot in Telegram using @BotFather
+
+• Get the bot token
+
+• Create a group in Telegram and add the created bot to it
+
+• Grant the bot administrator rights to be able to read messages
+
+• Find out the group ID (you can use the @getidsbot bot or by sending a message to the group and viewing it via the API)
+
+• Open the js/script.js file and paste the received data:
+
+• const TELEGRAM_BOT_TOKEN = 'YOUR_BOT_TOKEN'; // Insert your bot token here
+
+o const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Insert the group ID here
+
+Copyright
+
+© Belissimo, all rights reserved.
 
