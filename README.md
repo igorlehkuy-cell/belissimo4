@@ -10,17 +10,11 @@ Belissimo -  просто, швидко.
 1.Сучасний дизайн
 
 2.Форма замовлення їжі з відправкою даних у Telegram
-
 3. Історія замовлень
-4. 
-5. Фільтрація послуг за категоріями
-6. 
-7. Модальні вікна для форм
-8. 
-9. Кросбраузерна сумісність
-    
+4. Фільтрація послуг за категоріями
+5. Модальні вікна для форм
+6. Кросбраузерна сумісність  
 Ключові функції:
-
 •	Користувацький інтерфейс: перелік страв, фільтри, кастомні опції, оформлення замовлення.
 
 •	Особистий кабінет: історія замовлень, повторні замовлення, збережені адреси,
@@ -79,17 +73,12 @@ Goal: fast and convenient ordering of dishes, integrated kitchen management (rec
 Features:
 
 1. Modern design
-
 2. Food order form with sending data to Telegram
-
 3. Order history
 
-4.
-5. Filtering services by category
-6.
-7. Modal windows for forms
-8.
-9. Cross-browser compatibility
+4. Filtering services by category
+5. Modal windows for forms
+8. Cross-browser compatibility
 
 Key features:
 
